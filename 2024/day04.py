@@ -32,8 +32,7 @@ def search_word(grid, word):
 
 
 def search_crosses(grid, center, chars):
-    dir1 = [(-1, -1), (1, 1)]
-    dir2 = [(-1, 1), (1, -1)]
+    directions = [[(-1, -1), (1, 1)], [(-1, 1), (1, -1)]]
     occurrences = []
 
     for x in range(len(grid)):
@@ -41,19 +40,14 @@ def search_crosses(grid, center, chars):
             if not grid[x][y] == center:
                 continue
 
-            hits = [[], []]
-            for dx, dy in dir1:
-                nx, ny = x + dx, y + dy
-                if len(grid) <= nx or nx < 0 or len(grid[nx]) <= ny or ny < 0:
-                    continue
-                if grid[nx][ny] in chars:
-                    hits[0] += grid[nx][ny]
-            for dx, dy in dir2:
-                nx, ny = x + dx, y + dy
-                if len(grid) <= nx or nx < 0 or len(grid[nx]) <= ny or ny < 0:
-                    continue
-                if grid[nx][ny] in chars:
-                    hits[1] += grid[nx][ny]
+            hits = [[] for _ in directions]
+            for idx, d in enumerate(directions):
+                for dx, dy in d:
+                    nx, ny = x + dx, y + dy
+                    if len(grid) <= nx or nx < 0 or len(grid[nx]) <= ny or ny < 0:
+                        continue
+                    if grid[nx][ny] in chars:
+                        hits[idx] += grid[nx][ny]
 
             if all([len(set(d)) == len(chars) for d in hits]):
                 occurrences.append((x, y))
