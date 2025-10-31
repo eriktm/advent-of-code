@@ -1,14 +1,24 @@
-[tool.poetry]
+[project]
 name = "advent-of-code"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
+authors = []
 readme = "README.md"
+requires-python = ">=3.14"
+dependencies = ["numpy (>=2.3.4,<3.0.0)"]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-numpy = "^1.26.2"
-
+[tool.poetry]
+package-mode = false
 
 [build-system]
-requires = ["poetry-core"]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = ["flake8 (>=7.3.0,<8.0.0)", "black (>=25.9.0,<26.0.0)"]
+
+[tool.isort]
+profile = "black"
+
+[tool.black]
+line-length = 120
