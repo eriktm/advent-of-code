@@ -9,5 +9,8 @@
   "editor.formatOnSave": true,
   "python.analysis.autoFormatStrings": true,
   "python.analysis.autoImportCompletions": true,
-  "isort.args": ["--profile", "black"]
+  "isort.args": ["--profile", "black"],
+  "github.copilot.enable": {
+    "*": false
+  }
 }
